@@ -74,18 +74,19 @@ export class CreatePasswordComponent implements OnInit {
           if (this.icreateSubscriberAccount !== undefined && this.icreateSubscriberAccount !== null) {
             this._userMasterServiceProxy.createSubseriberAccount(this.icreateSubscriberAccount).subscribe({
               next: (res) => {
+                console.log(res);
                 this._dataTransferServiceProxy.setSubscriptionDetails(
-                  res.userId,
-                  res.planType,
-                  res.subscriptionAmmount,
-                  res.total,
-                  res.email,
-                  res.companySubscriptionId,
-                  res.subscriptionId,
-                  res.companyId
+                  res.responce.userId,
+                  res.responce.planType,
+                  res.responce.subscriptionAmmount,
+                  res.responce.total,
+                  res.responce.email,
+                  res.responce.companySubscriptionId,
+                  res.responce.subscriptionId,
+                  res.responce.companyId
                 );
                 this._router.navigate(['/transaction/checkout',
-                  res.verificationToken]);
+                  res.responce.verificationToken]);
               }
             })
           }

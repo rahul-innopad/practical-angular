@@ -5,6 +5,7 @@ import { TransactionRoutingModule } from './transaction-routing.module';
 import { TransactionComponent } from './transaction.component';
 import { CheckoutComponent } from './Componants/checkout/checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxStripeModule } from 'ngx-stripe';
 
 
 @NgModule({
@@ -16,7 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     TransactionRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxStripeModule,
+
   ]
 })
 export class TransactionModule { }

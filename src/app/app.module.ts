@@ -20,6 +20,7 @@ import { UserlstComponent } from './Componants/UserMannger/userlst/userlst.compo
 import { CreateUserComponent } from './Componants/UserMannger/create-user/create-user.component';
 import { SubscriptionPlanComponent } from './Pages/subscription-plan/subscription-plan.component';
 import { HeaderRightSideComponent } from './Layouts/header-right-side/header-right-side.component';
+import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { HeaderRightSideComponent } from './Layouts/header-right-side/header-rig
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ModalModule
+    ModalModule,
   ],
   providers: [ BsModalService],
   bootstrap: [AppComponent]
