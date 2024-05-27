@@ -118,6 +118,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
             const cardDetails = result.token.card;
             const token = result.token.id;
             console.log(token);
+            alert("Token-generated in console")
             // Submit API with cardDetails and token
           }
         });
