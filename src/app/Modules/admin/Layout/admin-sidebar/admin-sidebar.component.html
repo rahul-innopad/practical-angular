@@ -1,0 +1,39 @@
+<aside id="sidebar" class="sidebar bg-color-sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item"> <a class="nav-link " routerLink="/Admin"> <i class="bi bi-grid"></i>
+                <span>Dashboard</span> </a></li>
+        <li class="nav-item" *ngFor="let item of isidebarCollectionItem">
+            <a class="nav-link collapsed" attr.data-bs-target="#{{item.itemsIdentifier}}" data-bs-toggle="collapse"
+                href="#"> <i class="{{item.itemIconClass}}"></i><span>{{item.itemKey}}</span><i
+                    class="bi bi-chevron-down ms-auto"></i> </a>
+            <ul id="{{item.itemsIdentifier}}" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li *ngFor="let itemRouter of item.itemsValue">
+                    <a routerLink="{{itemRouter.routerLinkValue}}"> <i class="{{itemRouter.routerLinkClass}}"></i>
+                        <span>{{itemRouter.routerLinkText}}</span> </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-heading">Pages</li>
+        <li class="nav-item" *ngFor="let item of isidebarPagesCollection">
+            <ng-container *ngIf="role==='SuperAdmin'">
+                <a class="nav-link collapsed" attr.data-bs-target="#{{item.itemsIdentifier}}" data-bs-toggle="collapse"
+                    href="#"> <i class="{{item.itemIconClass}}"></i><span>{{item.itemKey}}</span><i
+                        class="bi bi-chevron-down ms-auto"></i> </a>
+                <ul id="{{item.itemsIdentifier}}" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li *ngFor="let itemRouter of item.itemsValue">
+                        <a routerLink="{{itemRouter.routerLinkValue}}"> <i class="{{itemRouter.routerLinkClass}}"></i>
+                            <span>{{itemRouter.routerLinkText}}</span> </a>
+                    </li>
+                </ul>
+            </ng-container>
+        </li>
+
+        <li class="nav-item" *ngFor="let sideItem of isidebaritem">
+            <a class="nav-link collapsed" routerLink="{{sideItem.routerLinkValue}}"> <i
+                    class="{{sideItem.routerLinkClass}}"></i> <span>{{sideItem.routerLinkText}}</span> </a>
+        </li>
+        <li class="nav-item"> <a type="button" (click)="onLoggedOut()" class="nav-link collapsed"> <i
+                    class="bi bi-box-arrow-in-left"></i>
+                <span>Log Out</span> </a></li>
+    </ul>
+</aside>

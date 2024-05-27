@@ -1,0 +1,170 @@
+<section class="order-form m-4">
+    <div class="container pt-4">
+        <form [formGroup]="registrationFormGroup" (ngSubmit)="onRegister()">
+            <span class="btn btn-link" routerLink="/">Back</span>
+            <div class="row">
+                <div class="col-12 text-center px-4">
+                    <h1 class="fw-bolder">Register</h1>
+                    <hr class="mt-1" />
+                    <input formControlName="UserId" type="text" id="form1"
+                        class="form-control d-none order-form-input" />
+                </div>
+                <div class="col-12">
+                    <div class="row mx-4 mb-3">
+                        <div class="col-sm-4">
+                            <div class="form-outline">
+                                <label
+                                    [ngStyle]="{'color':submmited && registrationFormGroup.controls['Firstname'].errors? 'red':'black'}"
+                                    class="form-label" for="form1">Firstname</label>
+                                <input formControlName="Firstname" type="text" id="form1"
+                                    class="form-control order-form-input"
+                                    [ngClass]="{'is-invalid':submmited && registrationFormGroup.controls['Firstname'].errors}" />
+                                <div class="text-danger fw-bolder"
+                                    *ngIf="(submmited || registrationFormGroup.controls['Firstname'].invalid && 
+                                        ( registrationFormGroup.controls['Firstname'].dirty || registrationFormGroup.controls['Firstname'].touched))">
+                                    <div *ngIf="registrationFormGroup.controls['Firstname']?.errors?.['required']">
+                                        Firstname is required</div>
+                                    <div *ngIf="registrationFormGroup.controls['Firstname']?.errors?.['maxlength']">
+                                        Firstname is must be less than 30 word</div>
+                                    <div *ngIf="registrationFormGroup.controls['Firstname']?.errors?.['pattern']">
+                                        Firstname is only containt A-Z or a-z</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4  mt-sm-0">
+                            <div class="form-outline">
+                                <label class="form-label" for="form2">Middle Name</label>
+                                <input type="text" formControlName="MiddleName" id="form2"
+                                    class="form-control order-form-input" />
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4  mt-sm-0">
+                            <div class="form-outline">
+                                <label class="form-label"
+                                    [ngStyle]="{'color':submmited && registrationFormGroup.controls['LastName'].errors? 'red':'black'}"
+                                    for="form3">Last Name</label>
+                                <input type="text" formControlName="LastName" id="form3"
+                                    [ngClass]="{'is-invalid':submmited && registrationFormGroup.controls['LastName'].errors}"
+                                    class="form-control order-form-input" />
+                                <div class="text-danger fw-bolder"
+                                    *ngIf="(submmited || registrationFormGroup.controls['LastName'].invalid && 
+                                        ( registrationFormGroup.controls['LastName'].dirty || registrationFormGroup.controls['LastName'].touched))">
+                                    <div *ngIf="registrationFormGroup.controls['LastName']?.errors?.['required']">
+                                        LastName is required</div>
+                                    <div *ngIf="registrationFormGroup.controls['LastName']?.errors?.['maxlength']">
+                                        LastName is must be less than 30 word</div>
+                                    <div *ngIf="registrationFormGroup.controls['LastName']?.errors?.['pattern']">
+                                        LastName is only containt A-Z or a-z</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-4">
+                        <div class="col-sm-4">
+                            <div class="form-outline">
+                                <label class="form-label"
+                                    [ngStyle]="{'color':submmited && registrationFormGroup.controls['EmailId'].errors? 'red':'black'}"
+                                    for="form5">Email</label>
+                                <input formControlName="EmailId" type="text" id="form5"
+                                    class="form-control order-form-input"
+                                    [ngClass]="{'is-invalid':submmited && registrationFormGroup.controls['EmailId'].errors}" />
+                                <div class="text-danger fw-bolder"
+                                    *ngIf="(submmited || registrationFormGroup.controls['EmailId'].invalid && 
+                                        ( registrationFormGroup.controls['EmailId'].dirty || registrationFormGroup.controls['EmailId'].touched))">
+                                    <div *ngIf="registrationFormGroup.controls['EmailId']?.errors?.['required']">
+                                        Email is required</div>
+                                    <div *ngIf="registrationFormGroup.controls['EmailId']?.errors?.['email']">
+                                        Invalid Email Id</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4  mt-sm-0">
+                            <div class="form-outline">
+                                <label class="form-label"
+                                    [ngStyle]="{'color':submmited && registrationFormGroup.controls['Password'].errors? 'red':'black'}"
+                                    for="form6">Password</label>
+                                <input type="text" formControlName="Password" id="form6"
+                                    class="form-control order-form-input"
+                                    [ngClass]="{'is-invalid':submmited && registrationFormGroup.controls['Password'].errors}" />
+                                <div class="text-danger fw-bolder"
+                                    *ngIf="(submmited || registrationFormGroup.controls['Password'].invalid && 
+                                        ( registrationFormGroup.controls['Password'].dirty || registrationFormGroup.controls['Password'].touched))">
+                                    <div *ngIf="registrationFormGroup.controls['Password']?.errors?.['required']">
+                                        Password is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4  mt-sm-0">
+                            <div class="form-outline">
+                                <label class="form-label"
+                                    [ngStyle]="{'color':submmited && registrationFormGroup.controls['Phone'].errors? 'red':'black'}"
+                                    for="form3">Phone</label>
+                                <input type="text" formControlName="Phone" id="form3"
+                                    class="form-control order-form-input" />
+                                <div class="text-danger fw-bolder"
+                                    *ngIf="(submmited || registrationFormGroup.controls['Phone'].invalid && 
+                                        ( registrationFormGroup.controls['Phone'].dirty || registrationFormGroup.controls['Phone'].touched))">
+                                    <div *ngIf="registrationFormGroup.controls['Phone']?.errors?.['required']">
+                                        Phone number is required.
+                                    </div>
+                                    <div *ngIf="registrationFormGroup.controls['Phone']?.errors?.['pattern']">
+                                        Please enter a valid 10-digit phone number.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3 mx-4">
+                        <div class="col-12">
+                            <label class="order-form-label">Address</label>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-outline">
+                                <input type="text" id="form7" formControlName="Address"
+                                    class="form-control order-form-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3 mx-4">
+                        <div class="col-sm-4">
+                            <div class="form-outline">
+                                <label class="form-label" for="form8">Country</label>
+                                <select formControlName="CountryId" (ngModelChange)="getStateByContryId($event)"  id="form8" class="form-select order-form-input"
+                                    aria-label="Default select example">
+                                    <option [value]="0">Country</option>
+                                    <option *ngFor="let country of countrylst" value="{{country.countryId}}">
+                                        {{country.countryName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-outline">
+                                <label class="form-label" for="form9">State</label>
+                                <select formControlName="StateId" (ngModelChange)="getCityByStateID($event)" id="form9" class="form-select order-form-input"
+                                    aria-label="Default select example">
+                                    <option [value]="0">State</option>
+                                    <option *ngFor="let state of statelst" value="{{state.stateId}}">{{state.stateName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-outline">
+                                <label class="form-label" for="form8">City</label>
+                                <select formControlName="CityId" id="form8" class="form-select order-form-input"
+                                    aria-label="Default select example">
+                                    <option [value]="0">City</option>
+                                    <option *ngFor="let city of citylst" value="{{city.cityId}}">{{city.cityName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5 mx-4">
+                        <div class="col-12">
+                            <button type="submit" id="btnSubmit" class="btn d-block btn-submit">Register Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

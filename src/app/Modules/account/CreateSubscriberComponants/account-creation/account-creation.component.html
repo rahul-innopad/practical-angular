@@ -1,0 +1,88 @@
+<div class="mx-5 px-5">
+    <form class="col-lg-12" [formGroup]="createUserDetials" (ngSubmit)="AddAccountDetials()">
+        <div class="row d-flex justify-content-center">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="FirstNameIdentity"
+                        class="form-label fw-bolder">FirstName</label>
+                    <input type="text" formControlName="FirstName" id="FirstNameIdentity" placeholder="FirstName"
+                        [ngClass]="{'is-invalid':submmited && createUserDetials.controls['FirstName'].errors}"
+                        class="form-control">
+                    <div class="text-danger fw-bolder"
+                        *ngIf="(submmited || createUserDetials.controls['FirstName'].invalid && 
+                        ( createUserDetials.controls['FirstName'].dirty || createUserDetials.controls['FirstName'].touched))">
+                        <div *ngIf="createUserDetials.controls['FirstName']?.errors?.['required']">
+                            Firstname is required</div>
+                        <div *ngIf="createUserDetials.controls['FirstName']?.errors?.['maxlength']">
+                            Firstname is must be less than 30 word</div>
+                        <div *ngIf="createUserDetials.controls['FirstName']?.errors?.['pattern']">
+                            Firstname is only containt A-Z or a-z</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 d-flex justify-content-center">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="LastNameIdentity"
+                        class="form-label fw-bolder">LastName</label>
+                    <input type="text" class="form-control" formControlName="LastName" id="LastNameIdentity"
+                        placeholder="LastName"
+                        [ngClass]="{'is-invalid':submmited && createUserDetials.controls['LastName'].errors}">
+                    <div class="text-danger fw-bolder"
+                        *ngIf="(submmited || createUserDetials.controls['LastName'].invalid && 
+                        ( createUserDetials.controls['LastName'].dirty || createUserDetials.controls['LastName'].touched))">
+                        <div *ngIf="createUserDetials.controls['LastName']?.errors?.['required']">
+                            LastName is required</div>
+                        <div *ngIf="createUserDetials.controls['LastName']?.errors?.['maxlength']">
+                            LastName is must be less than 30 word</div>
+                        <div *ngIf="createUserDetials.controls['LastName']?.errors?.['pattern']">
+                            LastName is only containt A-Z or a-z</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 d-flex justify-content-center">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="EmailIdentity" class="form-label fw-bolder">Email
+                        Address</label>
+                    <input type="text" class="form-control"
+                        [ngClass]="{'is-invalid':submmited && createUserDetials.controls['EmailAddress'].errors}"
+                        formControlName="EmailAddress" id="EmailIdentity" placeholder="youremail@gmail.com">
+                    <div class="text-danger fw-bolder"
+                        *ngIf="(submmited || createUserDetials.controls['EmailAddress'].invalid && 
+                        ( createUserDetials.controls['EmailAddress'].dirty || createUserDetials.controls['EmailAddress'].touched))">
+                        <div *ngIf="createUserDetials.controls['LastName']?.errors?.['required']">
+                            EmailAddress is required</div>
+                        <div *ngIf="createUserDetials.controls['EmailAddress']?.errors?.['email']">
+                            Invalid Email Address</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 d-flex justify-content-center">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="PhoneIdentity" class="form-label fw-bolder">Phone number</label>
+                    <input type="text" class="form-control" formControlName="PhoneNumber" id="PhoneIdentity"
+                        placeholder="Phone number">
+                    <div class="text-danger fw-bolder"
+                        *ngIf="(submmited || createUserDetials.controls['PhoneNumber'].invalid && 
+                                        ( createUserDetials.controls['PhoneNumber'].dirty || createUserDetials.controls['PhoneNumber'].touched))">
+                        <div *ngIf="createUserDetials.controls['PhoneNumber']?.errors?.['required']">
+                            Phone number is required.
+                        </div>
+                        <div *ngIf="createUserDetials.controls['PhoneNumber']?.errors?.['pattern']">
+                            Please enter a valid 10-digit phone number.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4 d-flex justify-content-center">
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary float-end">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

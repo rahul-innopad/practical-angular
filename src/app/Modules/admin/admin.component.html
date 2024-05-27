@@ -1,0 +1,4 @@
+<app-admin-header *ngIf="!(_router.url==='/login' || _router.url==='/registration' || _router.url==='/company-subscription')"></app-admin-header>
+<app-admin-sidebar *ngIf="!(_router.url==='/login' || _router.url==='/registration' || _router.url==='/company-subscription')"></app-admin-sidebar>
+<router-outlet></router-outlet>
+<app-admin-footer *ngIf="!(_router.url==='/login' || _router.url==='/registration' || _router.url==='/company-subscription')"></app-admin-footer>

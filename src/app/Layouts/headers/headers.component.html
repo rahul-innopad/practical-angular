@@ -1,0 +1,12 @@
+<header id="header" class="header d-print-none fixed-top d-flex align-items-center bg-color-header">
+    <div class="d-flex align-items-center justify-content-between d-print-none"> <a routerLink="/admin/admin-dashboard"
+            class="logo d-flex align-items-center"> <span class="d-none d-lg-block">Code By Rahul</span> </a> <i
+            class="bi bi-list toggle-sidebar-btn"></i></div>
+    <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+            <li class="nav-item d-block d-lg-none"> <a class="nav-link nav-icon search-bar-toggle " href="#"> <i
+                        class="bi bi-search"></i> </a></li>
+           <app-header-right-side [getLoggerEmail]="sendLoggerEmail"></app-header-right-side>
+        </ul>
+    </nav>
+</header>

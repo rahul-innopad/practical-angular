@@ -1,0 +1,22 @@
+<section class="order-form m-4">
+    <div class="container pt-4">
+        <section id="pricing" class="pricing-content section-padding">
+            <div class="container">
+                <div class="section-title text-center">
+                    <h2>Create Account</h2>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout.</p>
+                </div>
+                <div class="">
+                    <app-account-creation [subscriberAccountDeials]="sendToAccountCreate" *ngIf="!activePasswordComponant" (userAccountDetails)="getUserDetials($event)"
+                        (showPasswordComponant)="showPasswordHideUserDetails($event)" ></app-account-creation>
+                    <app-create-password [icreateSubscriberDto]="isubcriberDetials"
+                       [subscriptionId]="subscriptionId" (subscriberPassword)="getsubscriberPassword($event)"
+                        (showUserComponant)="showUserDetialsComponant($event)" (sendSubscriberDto)="getSubscriberProfile($event)"
+                        *ngIf="activePasswordComponant" ></app-create-password>
+                    <app-purchase-subscription *ngIf="activePurchaseComponant"></app-purchase-subscription>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>

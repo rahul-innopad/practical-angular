@@ -1,0 +1,83 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>User</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/Admin">Home</a></li>
+                <li class="breadcrumb-item">Components</li>
+                <li class="breadcrumb-item active">User</li>
+            </ol>
+        </nav>
+    </div>
+    <section class="section">
+        <div class="col-md-12 scrollbar scrollbar-near-moon thin">
+            <div class="force-overflow">
+                <div class="card border-style bg-white">
+                    <div class="row mb-3 p-3">
+                        <div class="col float-end">
+                            <div class="" >
+                                <span *ngIf="ramainUsers===0">Please Upgrade your plan If want to add more users</span>
+                                <span *ngIf="ramainUsers!==0">Remain User For Add: <span>{{ramainUsers}}</span></span>
+                            </div>
+                        </div>
+                        <div class="col float-end ">
+                            <button type="button" (click)="AddNewUser()" class="btn btn-secondary float-end p-2"><i
+                                    class="bi bi-plus-square">&nbsp; Create
+                                    New</i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="w-100">
+                        <div class="overflow-scroll">
+                            <table class="table table-hover table-bordered table-striped   text-center">
+                                <thead class="bg-primary text-white">
+                                    <tr>
+                                        <th scope="col">Sr.No.</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Activity</th>
+                                        <th scope="col">Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let users of iuserListDto;let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            <!-- <div *ngIf="users.isEdit">
+                                                <input type="text" class="form-control" [(ngModel)]/>
+                                            </div> -->
+                                            <div >{{users.firstName}}</div>
+                                        </td>
+                                        <td>{{users.lastName}}</td>
+                                        <td>
+                                            <span *ngFor="let role of users.roles">{{role.roleName}}</span>
+                                        </td>
+                                        <td>{{users.email}}</td>
+                                        <td>{{users.phoneNumber}}</td>
+                                        <td>
+                                            <div>
+                                                <button (click)="changeUserAsctivity(users.id,users.isActive)" type="button" [ngStyle]="{'cursor':users.isActive? 'pointer':'not-allowed'}"
+                                                    [ngClass]="users.isActive?'btn-outline-success':'btn-danger'"
+                                                    class="btn"><span>{{users.isActive?'Active':'Disactive'}}</span></button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button (click)="editUserDetials(users)"
+                                                [ngStyle]="{'cursor':users.isActive? 'pointer':'not-allowed'}"
+                                                [ngClass]="users.isActive?'btn-outline-primary':'btn-primary'"
+                                                class="btn"><i class="bi bi-pencil"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>

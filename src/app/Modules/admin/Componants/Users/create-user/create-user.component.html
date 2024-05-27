@@ -1,0 +1,81 @@
+<div class="modal-header d-flex justify-content-between">
+    <h5 class="modal-title" id="exampleModalLabel">User Manager</h5>
+    <button type="button" (click)="hideform()" class="btn btn-outline-danger close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form class="row g-3 needs-validation" [formGroup]="createUsersFormGroup" (ngSubmit)="onUserSubmition()" novalidate>
+        <div class="col-md-4">
+            <label for="FirstNameIdentity" class="form-label">First name</label>
+            <input type="text" formControlName="FirstName" class="form-control" id="FirstNameIdentity"
+                placeholder="Enter User First name"
+                [ngClass]="{'is-invalid':submmited && createUsersFormGroup.controls['FirstName'].errors}" required>
+            <div class="text-danger fw-bolder"
+                *ngIf="(submmited || createUsersFormGroup.controls['FirstName'].invalid && 
+                ( createUsersFormGroup.controls['FirstName'].dirty || createUsersFormGroup.controls['FirstName'].touched))">
+                <div *ngIf="createUsersFormGroup.controls['FirstName']?.errors?.['required']">
+                    Firstname is required</div>
+                <div *ngIf="createUsersFormGroup.controls['FirstName']?.errors?.['maxlength']">
+                    Firstname is must be less than 30 word</div>
+                <div *ngIf="createUsersFormGroup.controls['FirstName']?.errors?.['pattern']">
+                    Firstname is only containt A-Z or a-z</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="LastNameIdentity" class="form-label">Last name</label>
+            <input type="text" formControlName="LastName" class="form-control" id="LastNameIdentity"
+                placeholder="Enter User Last name"
+                [ngClass]="{'is-invalid':submmited && createUsersFormGroup.controls['LastName'].errors}" required>
+            <div class="text-danger fw-bolder"
+                *ngIf="(submmited || createUsersFormGroup.controls['LastName'].invalid && 
+                ( createUsersFormGroup.controls['LastName'].dirty || createUsersFormGroup.controls['LastName'].touched))">
+                <div *ngIf="createUsersFormGroup.controls['LastName']?.errors?.['required']">
+                    LastName is required</div>
+                <div *ngIf="createUsersFormGroup.controls['LastName']?.errors?.['maxlength']">
+                    LastName is must be less than 30 word</div>
+                <div *ngIf="createUsersFormGroup.controls['LastName']?.errors?.['pattern']">
+                    LastName is only containt A-Z or a-z</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label for="RoleIdentity" class="form-label">Role</label>
+            <select class="form-select" formControlName="RoleId" id="RoleIdentity" required>
+                <option value="null">Choose...</option>
+                <option *ngFor="let role of rolelst" value="{{role.roleId}}">{{role.roleName}}</option>
+            </select>
+        </div>
+        <div class="col-md-5">
+            <label for="PhoneIdentity" class="form-label">Phone</label>
+            <input type="text" class="form-control" formControlName="PhoneNumber" placeholder="Enter User Phone Number"
+                id="PhoneIdentity" [ngClass]="{'is-invalid':submmited && createUsersFormGroup.controls['PhoneNumber'].errors}" required>
+            <div class="text-danger fw-bolder"
+                *ngIf="(submmited || createUsersFormGroup.controls['PhoneNumber'].invalid && 
+                                ( createUsersFormGroup.controls['PhoneNumber'].dirty || createUsersFormGroup.controls['PhoneNumber'].touched))">
+                <div *ngIf="createUsersFormGroup.controls['PhoneNumber']?.errors?.['required']">
+                    Phone number is required.
+                </div>
+                <div *ngIf="createUsersFormGroup.controls['PhoneNumber']?.errors?.['pattern']">
+                    Please enter a valid 10-digit phone number.</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="EmailAddressIdentity" class="form-label">Email</label>
+            <input type="text" class="form-control" formControlName="EmailAddress" placeholder="useremail@gmail.com"
+                id="EmailAddressIdentity" [ngClass]="{'is-invalid':submmited && createUsersFormGroup.controls['EmailAddress'].errors}" required>
+            <div class="text-danger fw-bolder"
+                *ngIf="(submmited || createUsersFormGroup.controls['EmailAddress'].invalid && 
+                ( createUsersFormGroup.controls['EmailAddress'].dirty || createUsersFormGroup.controls['EmailAddress'].touched))">
+                <div *ngIf="createUsersFormGroup.controls['EmailAddress']?.errors?.['required']">
+                    EmailAddress is required</div>
+                <div *ngIf="createUsersFormGroup.controls['EmailAddress']?.errors?.['email']">
+                    Invalid Email Address</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">{{submitValue}}</button>
+            </div>
+        </div>
+    </form>
+</div>
