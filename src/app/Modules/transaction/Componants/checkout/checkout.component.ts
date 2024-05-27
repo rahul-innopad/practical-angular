@@ -7,7 +7,8 @@ import { UnityOfWorkServiceService } from 'src/app/Shared/Service/unity-of-work-
 //import { CreateTokenCardData, StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
 import { } from '../../../../../environments/environments';
 import { ScriptLoaderService } from 'src/app/Shared/Service/JsScriptLoaderService/script-loader.service';
-import { StripeService } from 'ngx-stripe';
+import { StripeService, StripeElementsService as element } from 'ngx-stripe';
+
 import { map } from 'rxjs';
 declare var Stripe: any;
 
@@ -17,7 +18,7 @@ declare var Stripe: any;
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit, AfterViewInit {
-
+ 
 
   checkoutFormGroup!: FormGroup;
   submit = false;
@@ -55,12 +56,20 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.loadPaymentScript();
-    //.setupStripeElement();
+    this.setupStripeElement();
   }
 
   setupStripeElement() {
-    const elements = this._stripeService.elements();
-    const cardNumberElement = elements.subscribe(x => {
+    // Set the publishable key for Stripe
+    this._stripeService.setKey("pk_test_51MySyeEoRbJtPRX1X5ZsZJ2dk7iSXH0vQn360tonMZ0YvECZwX8wBJMvfIjKNB51EoDTL9p8vUI4qt8sid5xk4ra00W6gM7eVZ");
+  
+    // Create references for card elements
+    let cardNumberElement: any;
+    let cardExpiryElement: any;
+    let cardCvcElement: any;
+  
+    // Subscribe to elements creation
+    this._stripeService.elements().subscribe((elements) => {
       const style = {
         base: {
           fontSize: '16px',
@@ -75,18 +84,60 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
           color: '#fa755a',
         }
       };
-
-
-      const cardNumberElement = x.create('cardNumber',{
+  
+      // Create and mount card number element
+      cardNumberElement = elements.create("cardNumber", {
         style: style,
-        placeholder: 'XXXX-XXXX-XXXX-XXXX'
+        placeholder: "Card Number",
       });
-
-      cardNumberElement.mount('#card-number-element');
+      cardNumberElement.mount("#card-number-element1");
+  
+      // Create and mount card expiry element
+      cardExpiryElement = elements.create("cardExpiry", {
+        style: style,
+      });
+      cardExpiryElement.mount("#card-expiry-element1");
+  
+      // Create and mount card CVC element
+      cardCvcElement = elements.create("cardCvc", {
+        style: style,
+      });
+      cardCvcElement.mount("#card-cvc-element1");
     });
-
-
+  
+    // Check if the button exists before adding an event listener
+    const addButton = document.querySelector("#btnAddCard");
+    if (addButton) {
+      addButton.addEventListener("click", () => {
+        this._stripeService.createToken(cardNumberElement, {
+          name: "setname",
+        }).subscribe((result: any) => {
+          if (result.error) {
+            alert(result.error.message);
+          } else {
+            const cardDetails = result.token.card;
+            const token = result.token.id;
+            console.log(token);
+            // Submit API with cardDetails and token
+          }
+        });
+      });
+    } else {
+      console.error("Button with ID 'btnAddCard' not found.");
+    }
   }
+  
+
+      // const cardNumberElement = x.create('cardNumber',{
+      //   style: style,
+      //   placeholder: 'XXXX-XXXX-XXXX-XXXX'
+      // });
+
+      // cardNumberElement.mount('#card-number-element');
+    //});
+
+
+  //}
 
   loadPaymentScript(): void {
     this.scriptLoader.loadScript('assets/Javascripts/checkout.js')
