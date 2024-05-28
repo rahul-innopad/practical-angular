@@ -495,3 +495,28 @@ export class RoleMasterServiceProxy {
     return this._http.get<any[]>(url_, options_);
   }
 }
+
+@Injectable({
+  providedIn: "root"
+})
+export class PaymentMasterServiceProxy{
+  API_ENDPOINT = environment.API_ENDPOINT;
+
+  constructor(
+    private _http: HttpClient
+  ) { }
+
+  paymentCheckoutMasterService(body_: ICheckoutDataInterface): Observable<any> {
+    let url_ = this.API_ENDPOINT + 'Payment/service/payment-checkout';
+    url_ = url_.replace(/[?&]$/, "");
+
+    let options_ = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'accept': 'application/json'
+      })
+    }
+    return this._http.post(url_, body_, options_);
+  }
+
+}

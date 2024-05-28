@@ -1,11 +1,13 @@
 export interface ICheckoutDataInterface {
+    stripeTokenId: string,
     userId: string,
     email: string,
-    cardDetials: ICardDetailInterface,
-    companyId: string,
     planType: string,
     subscriptionId: number,
-    companySubscriptionId: number
+    companySubscriptionId: number,
+    totalAmmount: number,
+    companyId: string
+
 }
 
 export interface ICardDetailInterface {

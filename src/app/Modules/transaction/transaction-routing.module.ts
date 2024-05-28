@@ -7,7 +7,7 @@ const routes: Routes = [
   { 
     path: '', component: TransactionComponent,
     children:[
-      { path: 'checkout', component: CheckoutComponent },
+      { path: 'checkout/:verificationToken', component: CheckoutComponent },
     ]
   }
 ];
