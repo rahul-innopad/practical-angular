@@ -10,7 +10,7 @@
                 </div>
                 <div class="mx-5 px-5">
 
-                    <form id="payment-form" class="col-lg-12" [formGroup]="checkoutFormGroup">
+                    <form id="payment-form" class="col-lg-12">
                         <div class="row mb-1 d-flex justify-content-center">
                             <div class="col-6">
                                 <span class="h5 fw-bolder">Subscription Type</span>
@@ -33,48 +33,46 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="CardHolderName" class="form-label fw-bolder">Card Holder Name</label>
-                                    <input maxlength="40" formControlName="CardHolderName" type="text"
+                                    <input maxlength="40"  type="text"
                                         id="CardHolderName" placeholder="Card Holder Name" class="form-control"
-                                        [ngClass]="{'is-invalid':submit && checkoutFormGroup.controls['CardHolderName'].errors}" />
-                                    <div class="text-danger fw-bolder"
+                                    />
+                                    <!-- <div class="text-danger fw-bolder"
                                         *ngIf="(submit || checkoutFormGroup.controls['CardHolderName'].invalid && 
                                             (checkoutFormGroup.controls['CardHolderName'].touched || checkoutFormGroup.controls['CardHolderName'].dirty))">
                                         <div *ngIf="checkoutFormGroup.controls['CardHolderName']?.errors?.['pattern']">
                                             Please enter a valid Card Holder Name.</div>
                                         <div *ngIf="checkoutFormGroup.controls['CardHolderName']?.errors?.['required']">
                                             Please enter Card Holder Name</div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-3 d-flex justify-content-center">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="CardNumberIdenetity" class="form-label fw-bolder">Card Number</label>
-                                    <input type="tel" inputmode="numeric" formControlName="CardNumber"
-                                        autocomplete="cc-number" maxlength="16" placeholder="xxxx xxxx xxxx xxxx"
-                                        id="CardNumberIdenetity" class="form-control"
-                                        [ngClass]="{'is-invalid':submit && checkoutFormGroup.controls['CardNumber'].errors}">
-                                    <div class="text-danger fw-bolder"
+                                    <label for="card-number" class="form-label fw-bolder">Card Number</label>
+                                    <!-- <input maxlength="16" type="text" id="cards-number-element" class="form-control"> -->
+                                   <div id="card-number-element" class="feild"></div>
+                                    <!-- <div class="text-danger fw-bolder"
                                         *ngIf="(submit || checkoutFormGroup.controls['CardNumber'].invalid && 
                                             (checkoutFormGroup.controls['CardNumber'].touched || checkoutFormGroup.controls['CardNumber'].dirty))">
                                         <div *ngIf="checkoutFormGroup.controls['CardNumber']?.errors?.['pattern']">
                                             Please enter a valid 16-digit card number.</div>
                                         <div *ngIf="checkoutFormGroup.controls['CardNumber']?.errors?.['required']">
                                             Please enter card number</div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-3 d-flex justify-content-center">
                             <div class="col-3">
                                 <div class="form-group">
-                                    <label for="CardExpiryIdentity" class="form-label fw-bolder">Card Expiry
+                                    <label for="card-expiry-element" class="form-label fw-bolder">Card Expiry
                                     </label>
-                                    <input type="text" maxlength="2" formControlName="CardExpiryMonth"
-                                        class="form-control" id="CardExpiryIdentity" placeholder="MM"
-                                        [ngClass]="{'is-invalid':submit && checkoutFormGroup.controls['CardExpiryMonth'].errors}" />
-                                    <div class="text-danger fw-bolder"
+                                    <!-- <input type="text" maxlength="5" 
+                                        class="form-control" id="card-expiry-element" placeholder="MM/YY"/> -->
+                                        <div id="card-expiry-element" class="feild"></div>                              
+                                    <!-- <div class="text-danger fw-bolder"
                                         *ngIf="(submit || checkoutFormGroup.controls['CardExpiryMonth'].invalid && 
                                             (checkoutFormGroup.controls['CardExpiryMonth'].touched || checkoutFormGroup.controls['CardExpiryMonth'].dirty))">
                                         <div *ngIf="checkoutFormGroup.controls['CardExpiryMonth']?.errors?.['pattern']">
@@ -82,35 +80,36 @@
                                         <div
                                             *ngIf="checkoutFormGroup.controls['CardExpiryMonth']?.errors?.['required']">
                                             Please enter expiry month</div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="form-group">
-                                    <label for="YearIdeneity" class="form-label fw-bolder">.
+                                    <!-- <label for="YearIdeneity" class="form-label fw-bolder">.
                                     </label>
-                                    <input type="text" maxlength="4" formControlName="CardExpiryYear"
+                                    <input type="text" maxlength="4" 
                                         class="form-control" id="YearIdeneity" placeholder="YYYY"
-                                        [ngClass]="{'is-invalid':submit && checkoutFormGroup.controls['CardExpiryYear'].errors}" />
-                                    <div class="text-danger fw-bolder"
+                                        /> -->
+                                    <!-- <div class="text-danger fw-bolder"
                                         *ngIf="(submit || checkoutFormGroup.controls['CardExpiryYear'].invalid && 
                                             (checkoutFormGroup.controls['CardExpiryYear'].touched || checkoutFormGroup.controls['CardExpiryYear'].dirty))">
                                         <div *ngIf="checkoutFormGroup.controls['CardExpiryYear']?.errors?.['pattern']">
                                             Only numbers are allowed.</div>
                                         <div *ngIf="checkoutFormGroup.controls['CardExpiryYear']?.errors?.['required']">
                                             Please enter expiry year</div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-3 d-flex justify-content-center">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="CVVIdeneity" class="form-label fw-bolder">Card CVV</label>
-                                    <input type="text" formControlName="CVVNumber" maxlength="3" placeholder="xxx"
-                                        id="CVVIdeneity" class="form-control"
-                                        [ngClass]="{'is-invalid':submit && checkoutFormGroup.controls['CVVNumber'].errors}">
-                                    <div class="text-danger fw-bolder"
+                                    <label for="CVVIdeneity" class="form-label fw-bolder">Card CVC</label>
+                                    <!-- <input type="text"  maxlength="3" placeholder="xxx"
+                                        id="CVVIdeneity" class="form-control">
+                                        <div class="form-control"></div> -->
+                                        <div id="card-cvc-element" class="feild"></div>
+                                    <!-- <div class="text-danger fw-bolder"
                                         *ngIf="(submit || checkoutFormGroup.controls['CVVNumber'].invalid && 
                                             (checkoutFormGroup.controls['CVVNumber'].touched || checkoutFormGroup.controls['CVVNumber'].dirty))">
                                         <div *ngIf="checkoutFormGroup.controls['CVVNumber']?.errors?.['pattern']">
@@ -120,7 +119,7 @@
                                         <div *ngIf="checkoutFormGroup.controls['CVVNumber']?.errors?.['minlength']">
                                             Please enter valid cvv number</div>
 
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -137,3 +136,4 @@
         </section>
     </div>
 </section>
+

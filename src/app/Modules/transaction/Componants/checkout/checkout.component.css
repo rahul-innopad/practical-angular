@@ -1,0 +1,41 @@
+.feild {
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex: 1;
+    padding: 6px;
+    cursor: text;
+    font-size: 16px;
+}
+
+#card-element {
+    /* Add your custom styles here */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+}
+
+ /* Style the input fields within the card element */
+ #card-element .InputElement {
+    padding: 10px;
+}
+/* Style the focus state of the card element */
+#card-element .InputElement--focus {
+    border-color: #007bff;
+}
+/* Style the error state of the card element */
+#card-element .InputElement--invalid {
+    border-color: #e74c3c;
+}
+
+#card-number-element {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
