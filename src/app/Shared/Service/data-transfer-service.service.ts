@@ -63,5 +63,9 @@ export class DataTransferServiceService {
     sessionStorage.removeItem(this.SubscriptionType);
     sessionStorage.removeItem(this.SubscriptionAmmount);
     sessionStorage.removeItem(this.TotalAmmount);
+    sessionStorage.getItem(this.SubscriptionAmmount);
+    sessionStorage.getItem(this.CompanySubscriptionId);
+    sessionStorage.getItem(this.SubscriptionId);
+    sessionStorage.getItem(this.CompanyId);
   }
 }

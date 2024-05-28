@@ -1,0 +1,73 @@
+
+
+#card-element {
+    /* Add your custom styles here */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Style the input fields within the card element */
+#card-element .InputElement {
+    padding: 10px;
+}
+
+/* Style the focus state of the card element */
+#card-element .InputElement--focus {
+    border-color: #007bff;
+}
+
+/* Style the error state of the card element */
+#card-element .InputElement--invalid {
+    border-color: #e74c3c;
+}
+
+
+#card-number-element1 {
+    border-radius: 10px;
+    border: 2px solid rgba(244, 125, 14, 0.20);
+    background: rgba(255, 255, 255, 0.05);
+    height: 60px;
+    margin: 12px 0px 0px 0;
+    padding: 17px;
+}
+
+#CvvNumber1 {
+    margin: -11px 0px 0 206px;
+    position: absolute;
+    background: #F2F2F2;
+    top: 0px;
+}
+
+#card-cvc-element1 {
+    border-radius: 10px;
+    border: 2px solid rgba(244, 125, 14, 0.20);
+    background: rgba(255, 255, 255, 0.05);
+    height: 60px;
+    margin: 0px 0px 12px 0;
+    padding: 17px;
+}
+
+#card-expiry-element1 {
+    border-radius: 10px;
+    border: 2px solid rgba(244, 125, 14, 0.20);
+    background: rgba(255, 255, 255, 0.05);
+    height: 60px;
+    margin: 0px 0px 12px 0;
+    padding: 17px;
+}
+
+.field {
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex: 1;
+    padding: 6px;
+    cursor: text;
+    font-size: 16px;
+    color: black;
+}
