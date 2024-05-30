@@ -47,7 +47,7 @@
         </div>
         <div class="col-md-5">
             <label for="PhoneIdentity" class="form-label">Phone</label>
-            <input type="text" class="form-control" formControlName="PhoneNumber" placeholder="Enter User Phone Number"
+            <input type="text" maxlength="10" class="form-control" formControlName="PhoneNumber" placeholder="Enter User Phone Number"
                 id="PhoneIdentity" [ngClass]="{'is-invalid':submmited && createUsersFormGroup.controls['PhoneNumber'].errors}" required>
             <div class="text-danger fw-bolder"
                 *ngIf="(submmited || createUsersFormGroup.controls['PhoneNumber'].invalid && 

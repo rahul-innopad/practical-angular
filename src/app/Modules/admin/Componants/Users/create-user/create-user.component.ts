@@ -102,18 +102,19 @@ export class CreateUserComponent implements OnInit, OnDestroy {
           loggerUserId: this.loggerEmail,
           companyId: this.companyId
         }
-        this.iupdateUserDto = {
-          userId:this.createUsersFormGroup.get('UserId')?.value,
-          firstName: this.createUsersFormGroup.get('FirstName')?.value,
-          lastName: this.createUsersFormGroup.get('LastName')?.value,
-          phoneNumber: this.createUsersFormGroup.get('PhoneNumber')?.value,
-          passwordHash: this.createUsersFormGroup.get('Password')?.value,
-          email: this.createUsersFormGroup.get('EmailAddress')?.value,
-          roleId: this.createUsersFormGroup.get('RoleId')?.value,
-          loggerUserId: this.loggerEmail,
-          companyId: this.companyId
-        }
+
         if (this.createUsersFormGroup.get('UserId')?.value != null) {
+          this.iupdateUserDto = {
+            userId:this.createUsersFormGroup.get('UserId')?.value,
+            firstName: this.createUsersFormGroup.get('FirstName')?.value,
+            lastName: this.createUsersFormGroup.get('LastName')?.value,
+            phoneNumber: this.createUsersFormGroup.get('PhoneNumber')?.value,
+            passwordHash: this.createUsersFormGroup.get('Password')?.value,
+            email: this.createUsersFormGroup.get('EmailAddress')?.value,
+            roleId: this.createUsersFormGroup.get('RoleId')?.value,
+            loggerUserId: this.loggerEmail,
+            companyId: this.companyId
+          }
           if(this.iupdateUserDto!==undefined && this.iupdateUserDto!==null){
             this._userMasterServiceProxy.updateUserAccountBySubscriber(this.iupdateUserDto).subscribe({
               next: (res) => {

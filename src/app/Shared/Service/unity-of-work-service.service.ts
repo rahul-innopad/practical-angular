@@ -11,7 +11,6 @@ export class UnityOfWorkServiceService {
     public stateMasterServiceProxy:StateMasterServiceProxy,
     public cityMasterServiceProry:CityMasterServiceProxy,
     public masterService:MasterServiceService,
-    public userMasterServiceProxy:UserMasterServiceProxy,
     public subscriptionServiceProxy:SubscriptionPlanMasterServiceProxy
   ) { }
 }

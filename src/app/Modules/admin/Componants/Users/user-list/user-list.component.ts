@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { UnityOfWorkServiceService } from 'src/app/Shared/Service/unity-of-work-service.service';
 import { IUserListsDto } from '../Interfaces/iuser-lists-dto';
 import { CreateUserComponent } from '../create-user/create-user.component';
+import { MasterServiceService, SubscriptionPlanMasterServiceProxy, UserMasterServiceProxy } from 'src/app/Shared/Service/master-service.service';
 
 @Component({
   selector: 'app-user-list',
@@ -17,7 +17,9 @@ export class UserListComponent implements OnInit {
   ramainUsers: number | undefined;
   constructor(
     private _bsModelService: BsModalService,
-    private _unityOfWorkService: UnityOfWorkServiceService
+    private _userMasterServiceProxy: UserMasterServiceProxy,
+    private _masterService:MasterServiceService,
+    private _subscriptionServiceProxy:SubscriptionPlanMasterServiceProxy
   ) { }
 
   ngOnInit(): void {
@@ -26,9 +28,9 @@ export class UserListComponent implements OnInit {
 
 
   isLoggedInIniciateService() {
-    if (this._unityOfWorkService.masterService.getLoggedIn()) {
-      this.loggerEmail = this._unityOfWorkService.masterService.getEmailId();
-      this.companyId = this._unityOfWorkService.masterService.getCompanyId();
+    if (this._masterService.getLoggedIn()) {
+      this.loggerEmail = this._masterService.getEmailId();
+      this.companyId = this._masterService.getCompanyId();
       if (this.loggerEmail !== null && this.loggerEmail !== undefined) {
         this.getUserList(this.loggerEmail, this.companyId);
         this.getRemainInformation(this.loggerEmail, this.companyId);
@@ -38,7 +40,7 @@ export class UserListComponent implements OnInit {
 
   getUserList(email: string | undefined | null, companyId: string | undefined | null) {
     if (email !== null && email !== undefined && companyId !== undefined && companyId !== null) {
-      this._unityOfWorkService.userMasterServiceProxy.getUserListService(email, companyId).subscribe({
+      this._userMasterServiceProxy.getUserListService(email, companyId).subscribe({
         next: (response) => {
           this.iuserListDto = response;
           this.iuserListDto = this.iuserListDto.map(x => {
@@ -65,7 +67,7 @@ export class UserListComponent implements OnInit {
 
   getRemainInformation(email: string | undefined | null, companyId: string | undefined | null) {
     if (email !== null && email !== undefined && companyId !== undefined && companyId !== null) {
-      this._unityOfWorkService.subscriptionServiceProxy.getRemainUserForSubscriberToAddService(email, companyId).subscribe({
+      this._subscriptionServiceProxy.getRemainUserForSubscriberToAddService(email, companyId).subscribe({
         next: (response) => {
           this.ramainUsers = response;
         }
@@ -91,16 +93,16 @@ export class UserListComponent implements OnInit {
 
   changeUserAsctivity(id: string, isActive: boolean) {
     if (id !== null && isActive === true) {
-      this.loggerEmail = this._unityOfWorkService.masterService.getEmailId();
-      this.companyId = this._unityOfWorkService.masterService.getCompanyId();
+      this.loggerEmail = this._masterService.getEmailId();
+      this.companyId = this._masterService.getCompanyId();
       if (this.loggerEmail !== null && this.loggerEmail !== undefined
         && this.companyId !== null && this.companyId !== undefined
       ) {
-        this._unityOfWorkService.userMasterServiceProxy.deactiveUserbysubscriber(this.loggerEmail, this.companyId, id).subscribe({
+        this._userMasterServiceProxy.deactiveUserbysubscriber(this.loggerEmail, this.companyId, id).subscribe({
           next: (res) => {
             this.getUserList(this.loggerEmail, this.companyId);
             this.getRemainInformation(this.loggerEmail, this.companyId);
-            alert(res);
+            alert(res.result);
           }
         })
       }

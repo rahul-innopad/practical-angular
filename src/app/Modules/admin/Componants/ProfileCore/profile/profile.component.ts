@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IUserProfileDto } from '../Interface/iuser-profile-dto';
 import { UnityOfWorkServiceService } from 'src/app/Shared/Service/unity-of-work-service.service';
+import { UserMasterServiceProxy } from 'src/app/Shared/Service/master-service.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,8 @@ export class ProfileComponent implements OnInit {
   CompanyId: string | undefined | null;
 
   constructor(
-    private _unityOfWorkService: UnityOfWorkServiceService
+    private _unityOfWorkService: UnityOfWorkServiceService,
+    private _userMasterServiceProxy:UserMasterServiceProxy
   ) { }
   ngOnInit(): void {
     this.getLoggerInformation();
@@ -32,7 +34,7 @@ export class ProfileComponent implements OnInit {
 
   }
   getProfileDetials(email: string, comapnyId: string) {
-    this._unityOfWorkService.userMasterServiceProxy.getUserProfileDto(email, comapnyId).subscribe({
+    this._userMasterServiceProxy.getUserProfileDto(email, comapnyId).subscribe({
       next: (response) => {
         this.iuserProfileDto = response;
         console.log(response)
