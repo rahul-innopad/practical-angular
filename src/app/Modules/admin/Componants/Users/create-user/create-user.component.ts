@@ -118,7 +118,7 @@ export class CreateUserComponent implements OnInit, OnDestroy {
           if(this.iupdateUserDto!==undefined && this.iupdateUserDto!==null){
             this._userMasterServiceProxy.updateUserAccountBySubscriber(this.iupdateUserDto).subscribe({
               next: (res) => {
-                alert(res);
+                alert(res.message);
                 this.hideform();
                 this.updateUserList.emit('ok');
               },
@@ -132,7 +132,7 @@ export class CreateUserComponent implements OnInit, OnDestroy {
           if (this.icreateUserDto !== undefined && this.icreateUserDto !== null) {
             this._userMasterServiceProxy.createUserAccountBySubscriber(this.icreateUserDto).subscribe({
               next: (res) => {
-                alert(res)
+                alert(res.message)
                 this.hideform();
                 this.updateUserList.emit('ok');
               },

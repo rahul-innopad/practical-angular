@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { MasterServiceService } from 'src/app/Shared/Service/master-service.service';
 
@@ -14,6 +15,7 @@ export class AdminHeaderComponent implements OnInit {
   sendLoggerRole: string | undefined;
 
   constructor(
+   
     private _masterService: MasterServiceService,
   ) { }
   ngOnInit(): void {
@@ -32,4 +34,5 @@ export class AdminHeaderComponent implements OnInit {
       }
     }
   }
+
 }

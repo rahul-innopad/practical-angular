@@ -12,6 +12,8 @@ import { CreateUserComponent } from './Componants/Users/create-user/create-user.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './Componants/ProfileCore/profile/profile.component';
 import { AdminLeftHeaderComponent } from './Layout/admin-left-header/admin-left-header.component';
+import { LogoutComponent } from './Shared/ReuseblesComponants/logout/logout.component';
+import { SubscriptionsComponent } from './Componants/SubscriptionManager/subscriptions/subscriptions.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { AdminLeftHeaderComponent } from './Layout/admin-left-header/admin-left-
     UserListComponent,
     CreateUserComponent,
     ProfileComponent,
-    AdminLeftHeaderComponent
+    AdminLeftHeaderComponent,
+    LogoutComponent,
+    SubscriptionsComponent
   ],
   imports: [
     CommonModule,

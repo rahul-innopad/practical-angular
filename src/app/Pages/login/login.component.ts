@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
       this._masterService.userLoggingService(email, password).subscribe({
         next: (res) => {
           alert(res.message);
-          this._masterService.setToken(res.token);
+          this._masterService.setToken(res.responce);
           this._router.navigate(['/Admin'])
         },
         error:(err)=>{

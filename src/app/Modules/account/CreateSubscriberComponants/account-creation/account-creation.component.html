@@ -65,7 +65,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="PhoneIdentity" class="form-label fw-bolder">Phone number</label>
-                    <input type="text" class="form-control" formControlName="PhoneNumber" id="PhoneIdentity"
+                    <input type="text" maxlength="10" class="form-control" formControlName="PhoneNumber" id="PhoneIdentity"
                         placeholder="Phone number">
                     <div class="text-danger fw-bolder"
                         *ngIf="(submmited || createUserDetials.controls['PhoneNumber'].invalid && 

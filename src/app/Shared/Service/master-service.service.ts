@@ -18,6 +18,7 @@ import { ICreateSubscriberDto } from 'src/app/Modules/account/CreateSubscriberCo
 import { ICreateUsersDto } from 'src/app/Modules/admin/Componants/Users/Interfaces/icreate-users-dto';
 import { IUpdateUserDto } from 'src/app/Modules/admin/Componants/Users/Interfaces/iupdate-user-dto';
 import { ICheckoutDataInterface } from 'src/app/Modules/transaction/Interfaces/icheckout-data-interface';
+import { ApiConstants } from '../Constants/api-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,7 @@ export class MasterServiceService {
 
 
   userLoggingService(email_: string, password_: string): Observable<any> {
-    let url_ = this.API_ENDPOINT + 'Users/User-login?';
+    let url_ = this.API_ENDPOINT + 'Login/User-login?';
     if (email_ === undefined || email_ === null)
       alert("email_ cannot be null or Undefined");
     else if (password_ === undefined || password_ === null)
@@ -60,6 +61,22 @@ export class MasterServiceService {
     return this._http.post(url_, null, options_);
   }
 
+  userLoggedOutService(email_: string): Observable<any> {
+    let url_ = this.API_ENDPOINT + `${ApiConstants.LoggedOut_Endpoint}`;
+    if (email_ === undefined || email_ === null)
+      alert("email_ cannot be null or Undefined");
+    url_ += "emailId=" + encodeURIComponent("" + email_) + "&" ;
+    url_ = url_.replace(/[?&]$/, "");
+
+    let options_ = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'accept': 'application/json'
+      })
+    }
+
+    return this._http.patch(url_, null, options_);
+  }
 
 
   //local-storage-work
@@ -325,7 +342,7 @@ export class UserMasterServiceProxy {
   ) { }
 
   getUserListService(emailId_: string, companyId_: string): Observable<IUserListsDto[]> {
-    let url_ = this.API_ENDPOINT + 'Users/service/get-users-by-ownerId?';
+    let url_ = this.API_ENDPOINT + `${ApiConstants.GetUsersByOwnerId_EndPoint}`;
     url_ += "id=" + encodeURIComponent("" + emailId_) + "&" + "companyId=" + encodeURIComponent("" + companyId_);
     url_ = url_.replace(/[?&]$/, "");
 
@@ -339,7 +356,7 @@ export class UserMasterServiceProxy {
   }
 
   getUserProfileDto(emailId_: string, companyId_: string): Observable<IUserProfileDto> {
-    let url_ = this.API_ENDPOINT + 'Users/service/get-user-profile?';
+    let url_ = this.API_ENDPOINT + `${ApiConstants.GetUserProfile_EndPoint}`;
     url_ += "emailId=" + encodeURIComponent("" + emailId_) + "&" + "companyId=" + encodeURIComponent("" + companyId_);
     url_ = url_.replace(/[?&]$/, "");
 
@@ -353,7 +370,7 @@ export class UserMasterServiceProxy {
   }
 
   createSubseriberAccount(body_: ICreateSubscriberDto): Observable<any> {
-    let url_ = this.API_ENDPOINT + 'Users/service/create-subscriber-account';
+    let url_ = this.API_ENDPOINT + `${ApiConstants.CreateSubscriberAccount_EndPoint}`;
     url_ = url_.replace(/[?&]$/, "");
 
     let options_ = {
@@ -366,7 +383,7 @@ export class UserMasterServiceProxy {
   }
 
   createUserAccountBySubscriber(body_: ICreateUsersDto): Observable<any> {
-    let url_ = this.API_ENDPOINT + 'Users/service/create-user-account-by-subscriber';
+    let url_ = this.API_ENDPOINT + `${ApiConstants.CreateUserAccountSubscriber_EndPoint}`;
     url_ = url_.replace(/[?&]$/, "");
 
     let options_ = {
@@ -378,7 +395,7 @@ export class UserMasterServiceProxy {
     return this._http.post(url_, body_, options_);
   }
   updateUserAccountBySubscriber(body_: IUpdateUserDto): Observable<any> {
-    let url_ = this.API_ENDPOINT + 'Users/service/update-users-account';
+    let url_ = this.API_ENDPOINT + `${ApiConstants.UpdateUserAccountBySubscriber_EndPoint}`;
 
     url_ = url_.replace(/[?&]$/, "");
 
@@ -392,7 +409,7 @@ export class UserMasterServiceProxy {
   }
 
   deactiveUserbysubscriber(loggerId: string, companyId: string, userId: string): Observable<any> {
-    let url_ = this.API_ENDPOINT + 'Users/service/deactive-users-account?';
+    let url_ = this.API_ENDPOINT + `${ApiConstants.DeactiveUserAccountBySubscriber_EndPoint}`;
     url_ += "userId=" + encodeURIComponent("" + userId) + "&" + "loggerId=" + encodeURIComponent("" + loggerId) +
       "&" + "companyId=" + encodeURIComponent("" + companyId);
     url_ = url_.replace(/[?&]$/, "");
@@ -419,7 +436,7 @@ export class SubscriptionPlanMasterServiceProxy {
   ) { }
 
   getSubscriptionListService(): Observable<ISubscriptionListDto[]> {
-    let url_ = this.API_ENDPOINT + 'SubscriptionPlan/get-subscription-plan';
+    let url_ = this.API_ENDPOINT + `${ApiConstants.GetSubscriptionList_EndPoint}`;
     url_ = url_.replace(/[?&]$/, "");
 
     let options_ = {
@@ -431,7 +448,7 @@ export class SubscriptionPlanMasterServiceProxy {
     return this._http.get<ISubscriptionListDto[]>(url_, options_);
   }
   getSubscriptionListByPlanTypeService(): Observable<any[]> {
-    let url_ = this.API_ENDPOINT + 'SubscriptionPlan/get-subscription-plan-by-type';
+    let url_ = this.API_ENDPOINT + `${ApiConstants.GetSubscriptionPlanByPlanType_EndPoint}`;
     url_ = url_.replace(/[?&]$/, "");
 
     let options_ = {
@@ -444,7 +461,7 @@ export class SubscriptionPlanMasterServiceProxy {
   }
 
   getRemainUserForSubscriberToAddService(emailId_: string, companyId_: string): Observable<number> {
-    let url_ = this.API_ENDPOINT + 'CompanySubcription/service/create-new-subscription-plan?';
+    let url_ = this.API_ENDPOINT + `${ApiConstants.GetRemainUserForSubscriberToAdd_EndPoint}`;
     url_ += "email=" + encodeURIComponent("" + emailId_) + "&" + "companyId=" + encodeURIComponent("" + companyId_);
     url_ = url_.replace(/[?&]$/, "");
 
@@ -459,7 +476,7 @@ export class SubscriptionPlanMasterServiceProxy {
 
 
   paymentCheckoutMasterService(body_: ICheckoutDataInterface): Observable<any> {
-    let url_ = this.API_ENDPOINT + 'Payment/payment-checkout';
+    let url_ = this.API_ENDPOINT + `${ApiConstants.PaymentCheckout_EndPoint}`;
     url_ = url_.replace(/[?&]$/, "");
 
     let options_ = {
@@ -469,6 +486,20 @@ export class SubscriptionPlanMasterServiceProxy {
       })
     }
     return this._http.post(url_, body_, options_);
+  }
+
+  getCompanySubscriptionListService(emailId_:string,companyId_:string): Observable<any[]> {
+    let url_ = this.API_ENDPOINT + `${ApiConstants.GetCompanySubscriptionDetails_Endoint}`;
+    url_ += "emailId=" + encodeURIComponent("" + emailId_) + "&" + "companyId=" + encodeURIComponent("" + companyId_);
+    url_ = url_.replace(/[?&]$/, "");
+
+    let options_ = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'accept': 'application/json'
+      })
+    }
+    return this._http.get<any[]>(url_, options_);
   }
 }
 

@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 import { UserListComponent } from './Componants/Users/user-list/user-list.component';
 import { ProfileComponent } from './Componants/ProfileCore/profile/profile.component';
 import { authGuard } from 'src/app/Shared/Guards/auth.guard';
+import { SubscriptionsComponent } from './Componants/SubscriptionManager/subscriptions/subscriptions.component';
 
 const routes: Routes = [
   { 
@@ -14,6 +15,9 @@ const routes: Routes = [
       },
       {
         path:'profile',component:ProfileComponent,canActivate:[authGuard]
+      },
+      {
+        path:'subscription',component:SubscriptionsComponent,canActivate:[authGuard]
       }
     ]
   

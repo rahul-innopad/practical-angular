@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ViewChildren } from '@angular/core';
 import { UnityOfWorkServiceService } from 'src/app/Shared/Service/unity-of-work-service.service';
+import { LogoutComponent } from '../../Shared/ReuseblesComponants/logout/logout.component';
 
 @Component({
   selector: 'app-admin-sidebar',
@@ -8,7 +9,7 @@ import { UnityOfWorkServiceService } from 'src/app/Shared/Service/unity-of-work-
 })
 export class AdminSidebarComponent {
   role:string=''
-
+  @ViewChild(LogoutComponent) logoutComponent!:LogoutComponent
   constructor(
     private _unitiyOfWorkService:UnityOfWorkServiceService
   ){}
@@ -27,6 +28,18 @@ export class AdminSidebarComponent {
           routerLinkValue:'/Admin/users-lst',
           routerLinkClass:'bi bi-circle',
           routerLinkText:'Users'
+        }
+      ]
+    },
+    {
+      itemsIdentifier:'subscription-management-nav',
+      itemIconClass:'bi bi-wallet',
+      itemKey:'Subscription',
+      itemsValue:[
+        {
+          routerLinkValue:'/Admin/subscription',
+          routerLinkClass:'bi bi-circle',
+          routerLinkText:'Subscription'
         }
       ]
     }
@@ -68,9 +81,7 @@ export class AdminSidebarComponent {
 
 
   onLoggedOut(){
-    if(this._unitiyOfWorkService.masterService.getLoggedIn()){
-      this._unitiyOfWorkService.masterService.removeToken();
-    }
+    this.logoutComponent.loggedOut();
   }
 
 }

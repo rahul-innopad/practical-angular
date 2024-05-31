@@ -18,8 +18,8 @@ export class UserListComponent implements OnInit {
   constructor(
     private _bsModelService: BsModalService,
     private _userMasterServiceProxy: UserMasterServiceProxy,
-    private _masterService:MasterServiceService,
-    private _subscriptionServiceProxy:SubscriptionPlanMasterServiceProxy
+    private _masterService: MasterServiceService,
+    private _subscriptionServiceProxy: SubscriptionPlanMasterServiceProxy
   ) { }
 
   ngOnInit(): void {
@@ -93,18 +93,20 @@ export class UserListComponent implements OnInit {
 
   changeUserAsctivity(id: string, isActive: boolean) {
     if (id !== null && isActive === true) {
-      this.loggerEmail = this._masterService.getEmailId();
-      this.companyId = this._masterService.getCompanyId();
-      if (this.loggerEmail !== null && this.loggerEmail !== undefined
-        && this.companyId !== null && this.companyId !== undefined
-      ) {
-        this._userMasterServiceProxy.deactiveUserbysubscriber(this.loggerEmail, this.companyId, id).subscribe({
-          next: (res) => {
-            this.getUserList(this.loggerEmail, this.companyId);
-            this.getRemainInformation(this.loggerEmail, this.companyId);
-            alert(res.result);
-          }
-        })
+      if (window.confirm('Are you sure to deactivate it?')) {
+        this.loggerEmail = this._masterService.getEmailId();
+        this.companyId = this._masterService.getCompanyId();
+        if (this.loggerEmail !== null && this.loggerEmail !== undefined
+          && this.companyId !== null && this.companyId !== undefined
+        ) {
+          this._userMasterServiceProxy.deactiveUserbysubscriber(this.loggerEmail, this.companyId, id).subscribe({
+            next: (res) => {
+              this.getUserList(this.loggerEmail, this.companyId);
+              this.getRemainInformation(this.loggerEmail, this.companyId);
+              alert(res.result);
+            }
+          })
+        }
       }
     }
   }
